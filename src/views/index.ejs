@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Personal Blog</h1>
+    <hr>
+    <% if (articles.length === 0) { %>
+        <p>No articles published yet.</p>
+    <% } else { %>
+        <ul>
+            <% articles.forEach(article => { %>
+                <li>
+                    <a href="/article/<%= article._id %>"><%= article.title %></a>
+                    <span>(<%= new Date(article.date).toLocaleDateString() %>)</span>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+</body>
+</html>
