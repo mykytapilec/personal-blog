@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= article.title %> - Personal Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1><%= article.title %></h1>
+    <p><em>Published on: <%= new Date(article.date).toLocaleDateString() %></em></p>
+    <hr>
+    <p><%= article.content %></p>
+    <hr>
+    <a href="/">← Back to Home</a>
+</body>
+</html>
