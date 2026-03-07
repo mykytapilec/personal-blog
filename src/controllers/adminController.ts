@@ -27,3 +27,22 @@ export const getDashboard = async (req: Request, res: Response) => {
 
   res.render("admin/dashboard", { articles });
 };
+
+export const getAddArticlePage = (req: Request, res: Response) => {
+  res.render("admin/add");
+};
+
+export const createArticle = async (req: Request, res: Response) => {
+
+  const { title, content, date } = req.body;
+
+  const db = getDB();
+
+  await db.collection("articles").insertOne({
+    title,
+    content,
+    date: new Date(date)
+  });
+
+  res.redirect("/admin/dashboard");
+};
