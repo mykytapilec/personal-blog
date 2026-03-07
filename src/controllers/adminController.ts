@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 
+import { getDB } from "../database";
+
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "password";
 
@@ -18,6 +20,10 @@ export const loginAdmin = (req: Request, res: Response) => {
   res.send("Invalid credentials");
 };
 
-export const getDashboard = (req: Request, res: Response) => {
-  res.render("admin/dashboard");
+export const getDashboard = async (req: Request, res: Response) => {
+  const db = getDB();
+
+  const articles = await db.collection("articles").find().toArray();
+
+  res.render("admin/dashboard", { articles });
 };

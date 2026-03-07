@@ -7,9 +7,43 @@
 
 <h1>Admin Dashboard</h1>
 
-<p>You are logged in.</p>
+<a href="/admin/add">Add Article</a>
 
-<a href="/">Go to Blog</a>
+<br><br>
+
+<table border="1">
+
+<tr>
+<th>Title</th>
+<th>Date</th>
+<th>Actions</th>
+</tr>
+
+<% articles.forEach(article => { %>
+
+<tr>
+
+<td><%= article.title %></td>
+
+<td>
+<%= new Date(article.date).toLocaleDateString() %>
+</td>
+
+<td>
+
+<a href="/admin/edit/<%= article._id %>">Edit</a>
+
+<form action="/admin/delete/<%= article._id %>" method="POST" style="display:inline;">
+<button type="submit">Delete</button>
+</form>
+
+</td>
+
+</tr>
+
+<% }) %>
+
+</table>
 
 </body>
 </html>

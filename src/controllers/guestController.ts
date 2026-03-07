@@ -2,13 +2,17 @@ import { Request, Response } from "express";
 import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 
+import { getDB } from "../database";
+
 dotenv.config();
 
 const client = new MongoClient(process.env.MONGO_URI || "");
 const db = client.db(process.env.DB_NAME || "personal_blog");
 
 export const getHomePage = async (req: Request, res: Response) => {
+  const db = getDB();
   const articles = await db.collection("articles").find().toArray();
+
   res.render("guest/index", { articles });
 };
 
