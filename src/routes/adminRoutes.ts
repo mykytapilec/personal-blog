@@ -1,13 +1,17 @@
 import { Router } from "express";
+import {
+  getLoginPage,
+  loginAdmin,
+  getDashboard,
+} from "../controllers/adminController";
+
+import { requireAuth } from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.get("/login", (req, res) => {
-  res.send("Admin login page");
-});
+router.get("/login", getLoginPage);
+router.post("/login", loginAdmin);
 
-router.get("/dashboard", (req, res) => {
-  res.send("Admin dashboard");
-});
+router.get("/dashboard", requireAuth, getDashboard);
 
 export default router;
