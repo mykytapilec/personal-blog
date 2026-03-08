@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Article</title>
+</head>
+<body>
+
+<h1>Edit Article</h1>
+
+<form method="POST" action="/admin/edit/<%= article._id %>">
+
+<label>Title</label>
+<br>
+<input type="text" name="title" value="<%= article.title %>" required>
+
+<br><br>
+
+<label>Content</label>
+<br>
+<textarea name="content" rows="10" cols="50" required><%= article.content %></textarea>
+
+<br><br>
+
+<label>Date</label>
+<br>
+<input
+  type="date"
+  name="date"
+  value="<%= new Date(article.date).toISOString().split('T')[0] %>"
+  required
+>
+
+<br><br>
+
+<button type="submit">Update Article</button>
+
+</form>
+
+<br>
+
+<a href="/admin/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

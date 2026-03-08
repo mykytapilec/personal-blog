@@ -4,7 +4,10 @@ import {
   loginAdmin,
   getDashboard,
   getAddArticlePage,
-  createArticle
+  createArticle,
+  getEditArticlePage,
+  updateArticle,
+  deleteArticle
 } from "../controllers/adminController";
 
 import { requireAuth } from "../middleware/authMiddleware";
@@ -18,5 +21,8 @@ router.get("/dashboard", requireAuth, getDashboard);
 
 router.get("/add", requireAuth, getAddArticlePage);
 router.post("/add", requireAuth, createArticle);
+router.get("/edit/:id", requireAuth, getEditArticlePage);
+router.post("/edit/:id", requireAuth, updateArticle);
+router.post("/delete/:id", requireAuth, deleteArticle);
 
 export default router;
