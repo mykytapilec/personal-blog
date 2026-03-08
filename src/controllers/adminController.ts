@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { ObjectId } from "mongodb";
 
 import { getDB } from "../database";
@@ -20,6 +20,12 @@ export const loginAdmin = (req: Request, res: Response) => {
 
   res.send("Invalid credentials");
 };
+
+export const logoutAdmin = (req: Request, res: Response) => {
+  req.session.destroy(() => {
+    res.redirect("/admin/login");
+  });
+}
 
 export const getDashboard = async (req: Request, res: Response) => {
   const db = getDB();

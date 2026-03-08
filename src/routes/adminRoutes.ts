@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   getLoginPage,
   loginAdmin,
+  logoutAdmin,
   getDashboard,
   getAddArticlePage,
   createArticle,
@@ -16,6 +17,7 @@ const router = Router();
 
 router.get("/login", getLoginPage);
 router.post("/login", loginAdmin);
+router.post("/logout", logoutAdmin);
 
 router.get("/dashboard", requireAuth, getDashboard);
 
