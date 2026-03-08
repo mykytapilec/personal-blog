@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import dotenv from "dotenv";
 
+import { connectDB } from "./database";
 import guestRoutes from "./routes/guestRoutes";
 import adminRoutes from "./routes/adminRoutes";
 
@@ -31,6 +32,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", guestRoutes);
 app.use("/admin", adminRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
 });

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<form action="/admin/logout" method="POST">
+  <button type="submit">Logout</button>
+</form>
+
+<a href="/admin/add">Add Article</a>
+
+<br><br>
+
+<table border="1">
+
+<tr>
+<th>Title</th>
+<th>Date</th>
+<th>Actions</th>
+</tr>
+
+<% articles.forEach(article => { %>
+
+<tr>
+
+<td><%= article.title %></td>
+
+<td>
+<%= new Date(article.date).toLocaleDateString() %>
+</td>
+
+<td>
+
+<a href="/admin/edit/<%= article._id %>">Edit</a>
+
+<form action="/admin/delete/<%= article._id %>" method="POST" style="display:inline;">
+<button type="submit">Delete</button>
+</form>
+
+</td>
+
+</tr>
+
+<% }) %>
+
+</table>
+
+</body>
+</html>
